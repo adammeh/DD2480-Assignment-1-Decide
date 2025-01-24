@@ -1,7 +1,7 @@
 class Decide{
-    static boolean CMV_2(double[] x_coordinates, double[] y_coordinates, int numpoints, double EPSILON){
+    static boolean CMV_2(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON){
         int index = 0;
-        while (index+2 < numpoints){
+        while (index+2 < NUMPOINTS){
             double angle = computeAngle(x_coordinates[index], y_coordinates[index],
                     x_coordinates[index+1], y_coordinates[index+1],
                     x_coordinates[index+2], y_coordinates[index+2]);
