@@ -19,16 +19,16 @@ class Decide{
     Fine for our intended use (non-reflex < PI-EPSILON) <=> (reflex > PI 1 EPSILON)
     Will return NaN if a another point overlaps with the vertex point*/
     static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y){
-        double ABx = p1_x - p0_x;
-        double ABy = p1_y - p0_y;
+        double BAx = p0_x - p1_x;
+        double BAy = p0_y - p1_y;
         double BCx = p2_x - p1_x;
         double BCy = p2_y - p1_y;
 
-        double dotProduct = ABx * BCx + ABy * BCy;
-        double magnitudeAB = Math.sqrt(ABx*ABx + ABy*ABy);
+        double dotProduct = BAx * BCx + BAy * BCy;
+        double magnitudeBA = Math.sqrt(BAx*BAx + BAy*BAy);
         double magnitudeBC = Math.sqrt(BCx*BCx + BCy*BCy);
 
-        return Math.PI - Math.acos(dotProduct / (magnitudeAB * magnitudeBC));
+        return Math.acos(dotProduct / (magnitudeBA * magnitudeBC));
 
     }
 
