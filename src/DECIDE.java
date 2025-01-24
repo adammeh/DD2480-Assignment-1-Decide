@@ -42,4 +42,31 @@ public class DECIDE {
         return false;
     }
 
+    public static boolean cmv4(double[] x, double[] y, int Q_PTS, int QUADS, int NUMPOINTS) {
+        if (NUMPOINTS < Q_PTS) {
+            return false;
+        }
+        int count = 0;
+        boolean[] quadrants = new boolean[4];
+        
+        for (int i = 0; i <= NUMPOINTS - Q_PTS; i++) {
+            for (int j = 0; j < Q_PTS; j++) {
+                double x1 = x[i+j];
+                double y1 = y[i+j];
+
+                if (x1 >= 0 && y1 >= 0) quadrants[0] = true; // Quadrant I
+                if (x1 < 0 && y1 >= 0) quadrants[1] = true; // Quadrant II
+                if (x1 <= 0 && y1 < 0) quadrants[2] = true; // Quadrant III
+                if (x1 > 0 && y1 < 0) quadrants[3] = true; // Quadrant IV
+            }
+        }
+        for (int k = 0; k < quadrants.length; k++) {
+            if (quadrants[k]) {
+                count++;
+                if (count > QUADS) return true;
+            }
+        }
+        return false;
+    }
+
 }
