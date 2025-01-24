@@ -1,5 +1,5 @@
 class Decide{
-    static boolean CMV_2( double[] x_coordinates, double[] y_coordinates, int numpoints, double EPSILON){
+    static boolean CMV_2(double[] x_coordinates, double[] y_coordinates, int numpoints, double EPSILON){
         int index = 0;
         while (index+2 < numpoints){
             double angle = computeAngle(x_coordinates[index], y_coordinates[index],
@@ -14,10 +14,25 @@ class Decide{
         }
         return false;
     }
-
-    /*This method does not return the true angle!!! But the non-reflex angle formed by the three points [0, Math.PI]
-    Fine for our intended use (non-reflex < PI-EPSILON) <=> (reflex > PI 1 EPSILON)
-    Will return NaN if a another point overlaps with the vertex point*/
+    static boolean CMV_9(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON,
+                         int C_PTS, int D_PTS){
+        if(NUMPOINTS < 5){
+            return false;
+        }
+        int index = 0;
+        while (index+C_PTS+D_PTS+2 < NUMPOINTS){
+            double angle = computeAngle(x_coordinates[index], y_coordinates[index],
+                    x_coordinates[index+C_PTS+1], y_coordinates[index+C_PTS+1],
+                    x_coordinates[index+C_PTS+D_PTS+2], y_coordinates[index+C_PTS+D_PTS+2]);
+            if(angle < (Math.PI - EPSILON) || angle > (Math.PI + EPSILON)) {
+                return true;
+            }
+            else{
+                index += 1;
+            }
+        }
+        return false;
+    }
     static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y){
         double BAx = p0_x - p1_x;
         double BAy = p0_y - p1_y;

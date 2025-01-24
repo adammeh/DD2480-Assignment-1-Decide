@@ -44,4 +44,30 @@ public class CMV_2AND9Test {
         EPSILON = 3.07;
         assertFalse(Decide.CMV_2(X, Y, NUMPOINTS, EPSILON));
     }
+
+    @Test
+    public void CMV_9Test1() {
+        int NUMPOINTS = 6;
+        double[] X = {3.694, Double.NaN, Double.NaN, 4.663, Double.NaN, 4.294};
+        double[] Y = {3.947, Double.NaN, Double.NaN, 4.405, Double.NaN, 4.265};
+        double EPSILON = 3.06;
+        int C_PTS = 2;
+        int D_PTS = 1;
+        assertTrue(Decide.CMV_9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
+        EPSILON = 3.07;
+        assertFalse(Decide.CMV_9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
+    }
+
+    @Test
+    public void CMV_9TestNotEnoughPoints() {
+        int NUMPOINTS = 3;
+        double[] X = {0.0, 2.0, 1.0};
+        double[] Y = {0.0, 0.0, 2.0};
+        double EPSILON = 2;
+        int C_PTS = 0;
+        int D_PTS = 0;
+
+        assertFalse(Decide.CMV_9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
+    }
+
 }
