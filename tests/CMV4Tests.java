@@ -64,6 +64,6 @@ public class CMV4Tests {
         int NUMPOINTS = 4;
 
         boolean result = DECIDE.cmv4(x, y, Q_PTS, QUADS, NUMPOINTS);
-        assertTrue(result, "cmv4 should return false when points lie exactly on the axes and do not fully span quadrants");
+        assertTrue(result, "cmv4 should return true when points lie exactly on span more than QUADS quadrants");
     }
 }
