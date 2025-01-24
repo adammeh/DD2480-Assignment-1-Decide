@@ -6,10 +6,10 @@ public class CMV7Tests {
 
     @Test
     void testCMV7_True() {
-        int[] x = {0, 1, 2, 15};
-        int[] y = {0, 1, 2, 15};
+        double[] x = {0, 1, 2, 15};
+        double[] y = {0, 1, 2, 15};
         int K_PTS = 1;
-        int LENGTH1 = 10;
+        double LENGTH1 = 10;
         int NUMPOINTS = 4;
 
         boolean result = DECIDE.cmv7(x, y, K_PTS, LENGTH1, NUMPOINTS);
@@ -18,26 +18,26 @@ public class CMV7Tests {
 
     @Test
     void testCMV7_False() {
-        int[] x = {0, 1, 2, 5};
-        int[] y = {0, 1, 2, 5};
+        double[] x = {0, 1, 2, 5};
+        double[] y = {0, 1, 2, 5};
         int K_PTS = 1;
-        int LENGTH1 = 10;
+        double LENGTH1 = 10;
         int NUMPOINTS = 4;
 
-        boolean result = DECIDE.cmv7(x, y, K_PTS, NUMPOINTS, LENGTH1);
+        boolean result = DECIDE.cmv7(x, y, K_PTS, LENGTH1, NUMPOINTS);
         assertFalse(result, "cmv7 should return false when no pair of points separated by K_PTS exceeds LENGTH1");
     }
 
     // Test with invalid input: NUMPOINTS less than 3
     @Test
     void testCMV7__NumPointsLessThan3() {
-        int[] x = {0, 1};
-        int[] y = {0, 1};
+        double[] x = {0, 1};
+        double[] y = {0, 1};
         int K_PTS = 1;
-        int LENGTH1 = 10;
+        double LENGTH1 = 10;
         int NUMPOINTS = 2;
 
-        boolean result = DECIDE.cmv7(x, y, K_PTS, NUMPOINTS, LENGTH1);
+        boolean result = DECIDE.cmv7(x, y, K_PTS, LENGTH1, NUMPOINTS);
         assertFalse(result, "cmv7 should return false when NUMPOINTS is less than 3");
     }
 
