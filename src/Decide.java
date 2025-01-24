@@ -70,6 +70,20 @@ class Decide{
         return false;
     }
 
+    static boolean CMV_11(double[] x_coordinates, int NUMPOINTS, int G_PTS){
+        if(NUMPOINTS < 3){
+            return false;
+        }
+        int index = 0;
+        while (index+G_PTS < NUMPOINTS){
+            if((x_coordinates[index+G_PTS+1] - x_coordinates[index]) < 0){
+                return true;
+            }
+            index += 1;
+        }
+        return false;
+    }
+
     static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y){
         double BAx = p0_x - p1_x;
         double BAy = p0_y - p1_y;
