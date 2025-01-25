@@ -29,4 +29,12 @@ class Decide{
         Predicate<Double> condition = a -> (a > AREA1);
         return existsTriangleWithCondition(X, Y, NUMPOINTS, 0, 0, condition);
     }
+    
+    public static boolean cmv10(double[] X, double[] Y, int NUMPOINTS, int E_PTS, int F_PTS, double AREA1) {
+        if ( NUMPOINTS < 5 || E_PTS < 1 || F_PTS < 1 || NUMPOINTS - 3 < E_PTS + F_PTS) {
+            return false;
+        }
+        Predicate<Double> condition = a -> (a > AREA1);
+        return existsTriangleWithCondition(X, Y, NUMPOINTS, E_PTS, F_PTS, condition);
+    }
 }
