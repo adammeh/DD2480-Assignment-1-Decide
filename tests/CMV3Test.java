@@ -2,7 +2,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public class TriangleTest {
+public class CMV3Test {
     @Test
     public void cmv3Test1() {
         int NUMPOINTS = 5;
