@@ -2,7 +2,6 @@
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -110,6 +109,58 @@ public class CMV_1Test{
 
     }
 
+    @Test
+    public void pointsFitTwoRadius_CMV13(){
+        //Act
+        int A_PTS=1; 
+        int B_PTS=2;
+        int NUMPOINTS=12;
+        
+        double RADIUS1=3;
+        double RADIUS2=1;
+        double[] X= {2,Double.NaN,3,Double.NaN,Double.NaN,-2, 0.5,Double.NaN,0.2,Double.NaN,Double.NaN,-1}; 
+        double[] Y= {2,Double.NaN,0,Double.NaN,Double.NaN,-1,0.5,Double.NaN,-1,Double.NaN,Double.NaN,0}; 
+
+        //Assert
+        assertTrue(decide.CMV13(X,Y,A_PTS, B_PTS, RADIUS1,RADIUS2,NUMPOINTS));
+
+    }
+
+
+    @Test
+    public void pointsFitOneRadius_CMV13(){
+         //Act
+         int A_PTS=1; 
+         int B_PTS=2;
+         int NUMPOINTS=12;
+         
+         double RADIUS1=0.5;
+         double RADIUS2=1;
+         double[] X= {2,Double.NaN,3,Double.NaN,Double.NaN,-2, 0.5,Double.NaN,0.2,Double.NaN,Double.NaN,-1}; 
+         double[] Y= {2,Double.NaN,0,Double.NaN,Double.NaN,-1,0.5,Double.NaN,-1,Double.NaN,Double.NaN,0}; 
+ 
+         //Assert
+         assertFalse(decide.CMV13(X,Y,A_PTS, B_PTS, RADIUS1,RADIUS2,NUMPOINTS));
+ 
+    }
+
+    @Test
+    public void pointsFitNoRadius_CMV13(){
+        //Act
+        int A_PTS=1; 
+        int B_PTS=2;
+        int NUMPOINTS=12;
+        
+        double RADIUS1=0.5;
+        double RADIUS2=1;
+        double[] X= {2,Double.NaN,3,Double.NaN,Double.NaN,-2, 0.5,Double.NaN,0.2,Double.NaN,Double.NaN,-2}; 
+        double[] Y= {2,Double.NaN,0,Double.NaN,Double.NaN,-1,0.5,Double.NaN,-1,Double.NaN,Double.NaN,0}; 
+
+        //Assert
+        assertFalse(decide.CMV13(X,Y,A_PTS, B_PTS, RADIUS1,RADIUS2,NUMPOINTS));
+
+
+    }
 
 
 }

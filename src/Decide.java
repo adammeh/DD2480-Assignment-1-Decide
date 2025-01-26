@@ -65,6 +65,38 @@ public class Decide{
 
     }
 
+    public static boolean CMV13(double[] X, double[] Y, int A_PTS, int B_PTS, double RADIUS1, double RADIUS2, int NUMPOINTS){
+
+        if (!(1<=A_PTS && 1<=B_PTS && A_PTS+B_PTS<=(NUMPOINTS-3))){
+            return false;
+        }
+        
+        boolean circle1=false;
+        boolean circle2=false;
+
+        for(int i=0; i<NUMPOINTS-(A_PTS+B_PTS+2);i++){
+            double[] Xpoints ={X[i], X[i+A_PTS+1], X[i+A_PTS+B_PTS+2]};
+            double[] Ypoints ={Y[i], Y[i+A_PTS+1], Y[i+A_PTS+B_PTS+2]};
+
+            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS1)){
+                circle1=true;
+            }
+            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS2)){
+                circle2=true;
+            }
+            if (circle1 && circle2){
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
+
+
+
+
 
 
 
