@@ -46,7 +46,7 @@ public class Decide{
 
     }
 
-    public static boolean CMV2(double[] X, double[] Y, int A_PTS, int B_PTS, double RADIUS1, int NUMPOINTS){
+    public static boolean CMV8(double[] X, double[] Y, int A_PTS, int B_PTS, double RADIUS1, int NUMPOINTS){
 
         if (!(1<=A_PTS && 1<=B_PTS && A_PTS+B_PTS<=(NUMPOINTS-3))){
             return false;
