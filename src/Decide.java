@@ -8,15 +8,11 @@ public class Decide{
 
         //Checks for every set of three consequtive datapoints
         for(int i=0; i<X.length-2;i++){
-            double a=distance(X[i],Y[i],X[i+1],Y[i+1]);
-            double b=distance(X[i],Y[i],X[i+2],Y[i+2]);
-            double c=distance(X[i+1],Y[i+1],X[i+2],Y[i+2]); 
 
-            //Uses the law of cosine to compute angle
-            double angleA=Math.acos((Math.pow(b,2)+Math.pow(c,2)-Math.pow(a, 2))/(2*b*c)); 
+            double[] Xpoints ={X[i], X[i+1], X[i+2]};
+            double[] Ypoints ={Y[i], Y[i+1], Y[i+2]};
 
-            //Uses theorem from the law of Sines
-            if (a/Math.sin(angleA)<2*RADIUS1){
+            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS1)){
                 return true;
             }
         }
