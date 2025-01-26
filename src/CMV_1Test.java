@@ -61,6 +61,55 @@ public class CMV_1Test{
     }
 
 
+    @Test
+    public void pointsInsideCircle_CMV2(){
+        //Act 
+        int A_PTS=1; 
+        int B_PTS=2;
+        int NUMPOINTS=6;
+        
+        double RADIUS1=3; 
+        double[] X= {2, 0,3, 0,0,-2}; 
+        double[] Y= {2,0,0,0,0,-1}; 
+        
+        //Assert
+        assertTrue(decide.CMV2(X,Y,A_PTS, B_PTS, RADIUS1,NUMPOINTS));
+
+    }
+
+
+    @Test
+    public void pointsOutsideCircle_CMV2(){
+        //Act
+        int A_PTS=1; 
+        int B_PTS=2;
+        int NUMPOINTS=6;
+        
+        double RADIUS1=3;
+        double[] X= {0,0,-5,0,0,3}; 
+        double[] Y= {4,0,0,0,0,3}; 
+
+        //Assert
+        assertFalse(decide.CMV2(X,Y,A_PTS, B_PTS, RADIUS1,NUMPOINTS));
+    }
+
+
+    @Test
+    public void notEnoughPoints_CMV2(){
+        //Act 
+        int A_PTS=1; 
+        int B_PTS=1;
+        int NUMPOINTS=3;
+        
+        double RADIUS1=3; 
+        double[] X= {2, 3, -2}; 
+        double[] Y= {2,0,-1}; 
+        
+        //Assert
+        assertFalse(decide.CMV2(X,Y,A_PTS, B_PTS, RADIUS1,NUMPOINTS));
+
+    }
+
 
 
 }
