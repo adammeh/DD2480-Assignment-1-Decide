@@ -16,51 +16,51 @@ public class LIC2and9Test {
         assertEquals(Math.PI/4,Decide.computeAngle(0,-2,0,4,3,1), "Error on 45 deg angle");
     }
     @Test
-    public void CMV_2Test1() {
+    public void LIC2Test1() {
         int NUMPOINTS = 5;
         double[] X = {0.0, 1.0, 2.0, 3.0, 4.0};
         double[] Y = {0.0, 1.0, 2.0, 3.0, 4.0};
         double EPSILON = 0.002;
 
-        assertFalse(Decide.CMV_2(X, Y, NUMPOINTS, EPSILON));
+        assertFalse(Decide.cm2(X, Y, NUMPOINTS, EPSILON));
     }
 
     @Test
-    public void CMV_2Test2() {
+    public void LIC2Test2() {
         int NUMPOINTS = 3;
         double[] X = {0.0, 2.0, 1.0};
         double[] Y = {0.0, 0.0, 2.0};
         double EPSILON = 2;
 
-        assertTrue(Decide.CMV_2(X, Y, NUMPOINTS, EPSILON));
+        assertTrue(Decide.cmv2(X, Y, NUMPOINTS, EPSILON));
     }
 
     @Test
-    public void CMV_2Test3() {
+    public void LIC2Test3() {
         int NUMPOINTS = 3;
         double[] X = {3.694, 4.663, 4.294};
         double[] Y = {3.947, 4.405, 4.265};
         double EPSILON = 3.06;
-        assertTrue(Decide.CMV_2(X, Y, NUMPOINTS, EPSILON));
+        assertTrue(Decide.cmv2(X, Y, NUMPOINTS, EPSILON));
         EPSILON = 3.07;
-        assertFalse(Decide.CMV_2(X, Y, NUMPOINTS, EPSILON));
+        assertFalse(Decide.cmv2(X, Y, NUMPOINTS, EPSILON));
     }
 
     @Test
-    public void CMV_9Test1() {
+    public void LIC9Test1() {
         int NUMPOINTS = 6;
         double[] X = {3.694, Double.NaN, Double.NaN, 4.663, Double.NaN, 4.294};
         double[] Y = {3.947, Double.NaN, Double.NaN, 4.405, Double.NaN, 4.265};
         double EPSILON = 3.06;
         int C_PTS = 2;
         int D_PTS = 1;
-        assertTrue(Decide.CMV_9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
+        assertTrue(Decide.cmv9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
         EPSILON = 3.07;
-        assertFalse(Decide.CMV_9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
+        assertFalse(Decide.cmv9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
     }
 
     @Test
-    public void CMV_9TestNotEnoughPoints() {
+    public void LIC9TestNotEnoughPoints() {
         int NUMPOINTS = 3;
         double[] X = {0.0, 2.0, 1.0};
         double[] Y = {0.0, 0.0, 2.0};
@@ -68,7 +68,7 @@ public class LIC2and9Test {
         int C_PTS = 0;
         int D_PTS = 0;
 
-        assertFalse(Decide.CMV_9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
+        assertFalse(Decide.cmv9(X, Y, NUMPOINTS, EPSILON, C_PTS, D_PTS));
     }
 
 }

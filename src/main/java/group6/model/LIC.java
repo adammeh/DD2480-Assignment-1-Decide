@@ -20,7 +20,7 @@ public class LIC {
     }
 
     // todo: Methods for other LICs (LIC1 to LIC14)...
-    static boolean CMV_2(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON){
+    static boolean cmv2(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON){
         int index = 0;
         while (index+2 < NUMPOINTS){
             double angle = computeAngle(x_coordinates[index], y_coordinates[index],
@@ -36,7 +36,7 @@ public class LIC {
         return false;
     }
 
-    static boolean CMV_6(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double DIST, int N_PTS){
+    static boolean cmv6(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double DIST, int N_PTS){
         if(NUMPOINTS < 3){
             return false;
         }
@@ -71,7 +71,7 @@ public class LIC {
         return false;
     }
 
-    static boolean CMV_9(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON,
+    static boolean cmv9(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON,
                          int C_PTS, int D_PTS){
         if(NUMPOINTS < 5){
             return false;
@@ -90,7 +90,7 @@ public class LIC {
         }
         return false;
     }
-    static boolean CMV_11(double[] x_coordinates, int NUMPOINTS, int G_PTS){
+    static boolean cmv11(double[] x_coordinates, int NUMPOINTS, int G_PTS){
         if(NUMPOINTS < 3){
             return false;
         }
