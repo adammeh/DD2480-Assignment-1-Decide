@@ -35,6 +35,14 @@ public class LICService {
                 return lic.evaluateLIC0(points, parameters);
             case 1:
                 // todo: Add cases for other LICs (up to 14)
+            case 2:
+                return lic.evaluateLIC2(points, parameters);
+            case 6:
+                return lic.evaluateLIC6(points, parameters);
+            case 9:
+                return lic.evaluateLIC9(points, parameters);
+            case 11:
+                return lic.evaluateLIC11(points, parameters);
             default:
                 throw new IllegalArgumentException("Invalid LIC ID: " + licId);
         }

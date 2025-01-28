@@ -2,6 +2,8 @@ package group6.model;
 
 import java.util.List;
 
+import static group6.util.MathUtil.computeAngle;
+
 /**
  * Implements logic for all Launch Interceptor Conditions (LICs).
  */
@@ -19,13 +21,14 @@ public class LIC {
         return false;
     }
 
-    // todo: Methods for other LICs (LIC1 to LIC14)...
-    static boolean cmv2(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON){
+    public boolean evaluateLIC2(List<Point> points, Parameters parameters){
+        int numpoints = points.size();
+        double EPSILON = parameters.getEpsilon();
         int index = 0;
-        while (index+2 < NUMPOINTS){
-            double angle = computeAngle(x_coordinates[index], y_coordinates[index],
-                    x_coordinates[index+1], y_coordinates[index+1],
-                    x_coordinates[index+2], y_coordinates[index+2]);
+        while (index+2 < numpoints){
+            double angle = computeAngle(points.get(index).getX(), points.get(index).getY(),
+                    points.get(index+1).getX(), points.get(index+1).getY(),
+                    points.get(index+2).getX(), points.get(index+2).getY());
             if(angle < (Math.PI - EPSILON) || angle > (Math.PI + EPSILON)) {
                 return true;
             }
@@ -36,30 +39,33 @@ public class LIC {
         return false;
     }
 
-    static boolean cmv6(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double DIST, int N_PTS){
-        if(NUMPOINTS < 3){
+    public boolean evaluateLIC6(List<Point> points, Parameters parameters){
+        int numpoints = points.size();
+        int N_PTS = parameters.getNPts();
+        double DIST = parameters.getDist();
+        if(numpoints < 3){
             return false;
         }
         int index = 0;
-        while (index+N_PTS < NUMPOINTS+1){
+        while (index+N_PTS < numpoints+1){
 
-            double[] p0 = {x_coordinates[index], y_coordinates[index]};
-            double[] pn = {x_coordinates[index+N_PTS-1], y_coordinates[index+N_PTS-1]};
+            double[] p0 = {points.get(index).getX(), points.get(index).getY()};
+            double[] pn = {points.get(index+N_PTS-1).getX(), points.get(index+N_PTS-1).getY()};
             //to avoid repeated computation calculate the factors of the equation of the line P0-Pn
             double a = pn[1] - p0[1];
             double b = p0[0] - pn[0];
             double c = pn[0] * p0[1] - pn[1] * p0[0];
             //overlapping points case
             if(a == 0 && b == 0){
-                for(int i = 1; i < x_coordinates.length -1; i++){
-                    double distance = Math.sqrt(x_coordinates[i]*x_coordinates[i] + y_coordinates[i]*y_coordinates[i]);
+                for(int i = 1; i < numpoints -1; i++){
+                    double distance = Math.sqrt(points.get(i).getX()*points.get(i).getX() + points.get(i).getY()*points.get(i).getY());
                     if(distance > DIST){
                         return true;
                     }
                 }
             } else {
-                for(int i = 1; i < x_coordinates.length -1; i++){
-                    double distance = Math.abs(a*x_coordinates[i] + b*y_coordinates[i] + c) / Math.sqrt(a*a + b*b);
+                for(int i = 1; i < numpoints -1; i++){
+                    double distance = Math.abs(a*points.get(i).getX() + b*points.get(i).getY() + c) / Math.sqrt(a*a + b*b);
                     if(distance > DIST){
                         return true;
                     }
@@ -71,16 +77,19 @@ public class LIC {
         return false;
     }
 
-    static boolean cmv9(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON,
-                         int C_PTS, int D_PTS){
-        if(NUMPOINTS < 5){
+    public boolean evaluateLIC9(List<Point> points, Parameters parameters){
+        int numpoints = points.size();
+        int C_PTS = parameters.getCPts();
+        int D_PTS = parameters.getDPts();
+        double EPSILON = parameters.getEpsilon();
+        if(numpoints < 5){
             return false;
         }
         int index = 0;
-        while (index+C_PTS+D_PTS+2 < NUMPOINTS){
-            double angle = computeAngle(x_coordinates[index], y_coordinates[index],
-                    x_coordinates[index+C_PTS+1], y_coordinates[index+C_PTS+1],
-                    x_coordinates[index+C_PTS+D_PTS+2], y_coordinates[index+C_PTS+D_PTS+2]);
+        while (index+C_PTS+D_PTS+2 < numpoints){
+            double angle = computeAngle(points.get(index).getX(), points.get(index).getY(),
+                    points.get(index+C_PTS+1).getX(), points.get(index+C_PTS+1).getY(),
+                    points.get(index+C_PTS+D_PTS+2).getX(), points.get(index+C_PTS+D_PTS+2).getY());
             if(angle < (Math.PI - EPSILON) || angle > (Math.PI + EPSILON)) {
                 return true;
             }
@@ -90,13 +99,15 @@ public class LIC {
         }
         return false;
     }
-    static boolean cmv11(double[] x_coordinates, int NUMPOINTS, int G_PTS){
-        if(NUMPOINTS < 3){
+    public boolean evaluateLIC11(List<Point> points, Parameters parameters){
+        int numpoints = points.size();
+        int G_PTS = parameters.getGPts();
+        if(numpoints < 3){
             return false;
         }
         int index = 0;
-        while (index+G_PTS < NUMPOINTS){
-            if((x_coordinates[index+G_PTS+1] - x_coordinates[index]) < 0){
+        while (index+G_PTS +1< numpoints){
+            if((points.get(index+G_PTS+1).getX() - points.get(index).getX()) < 0){
                 return true;
             }
             index += 1;
@@ -104,18 +115,5 @@ public class LIC {
         return false;
     }
 
-    static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y){
-        double BAx = p0_x - p1_x;
-        double BAy = p0_y - p1_y;
-        double BCx = p2_x - p1_x;
-        double BCy = p2_y - p1_y;
-
-        double dotProduct = BAx * BCx + BAy * BCy;
-        double magnitudeBA = Math.sqrt(BAx*BAx + BAy*BAy);
-        double magnitudeBC = Math.sqrt(BCx*BCx + BCy*BCy);
-
-        return Math.acos(dotProduct / (magnitudeBA * magnitudeBC));
-
-    }
 
 }
