@@ -30,7 +30,7 @@ public class LIC10Test {
         parameters.setEPts(2);
         parameters.setFPts(3);
         
-        assertTrue(licService.evaluateLICById(10, points, parameters));
+        assertTrue(licService.evaluateLICById(10, points, parameters), "cmv10 should return true when three points separated by E_PTS and F_PTS respectively form a triangle with area larger than AREA1");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class LIC10Test {
         parameters.setEPts(5);
         parameters.setFPts(3);
         
-        assertFalse(licService.evaluateLICById(10, points, parameters));
+        assertFalse(licService.evaluateLICById(10, points, parameters), "cmv10 should return false when E_PTS + F_PTS are larger than NUMPOINTS - 3");
     }
     
     @Test
@@ -73,6 +73,6 @@ public class LIC10Test {
         parameters.setEPts(0);
         parameters.setFPts(1);
 
-        assertFalse(licService.evaluateLICById(10, points, parameters));
+        assertFalse(licService.evaluateLICById(10, points, parameters), "cmv10 should return false when E_PTS or F_PTS is smaller than 1");
     }
 }

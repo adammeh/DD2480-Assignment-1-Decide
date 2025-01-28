@@ -35,7 +35,7 @@ public class LIC14Test {
         parameters.setEPts(2);
         parameters.setFPts(1);
 
-        assertTrue(licService.evaluateLICById(14, points, parameters));
+        assertTrue(licService.evaluateLICById(14, points, parameters), "cmv14 should return true when there exists two sets of three points (can be one set) separated by E_POINTS and F_POINTS respectively so that one of the triangles area is larger than AREA1, and the other one smaller than AREA2");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class LIC14Test {
         parameters.setEPts(0);
         parameters.setFPts(0);
 
-        assertFalse(licService.evaluateLICById(14, points, parameters));
+        assertFalse(licService.evaluateLICById(14, points, parameters), "cmv14 should not return true when NUMPOINTS is less than 5");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class LIC14Test {
         parameters.setEPts(1);
         parameters.setFPts(1);
 
-        assertFalse(licService.evaluateLICById(14, points, parameters));
+        assertFalse(licService.evaluateLICById(14, points, parameters), "cmv14 should return false when AREA2 is negative");
     }
 
     @Test
@@ -94,6 +94,6 @@ public class LIC14Test {
         parameters.setEPts(1);
         parameters.setFPts(1);
 
-        assertFalse(licService.evaluateLICById(14, points, parameters));
+        assertFalse(licService.evaluateLICById(14, points, parameters), "cmv14 should return false when there does not exist two sets of three points (can be one set) separated by E_POINTS and F_POINTS respectively so that one of the triangles area is larger than AREA1, and the other one smaller than AREA2");
     }
 }
