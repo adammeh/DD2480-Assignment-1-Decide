@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LIC0Test {
 
     @Test
-    void testCmv0_True() {
+    void testLIC0ValidInput() {
         LICService licService = new LICService();
         List<Point> points = Arrays.asList(
                 new Point(0, 0),
