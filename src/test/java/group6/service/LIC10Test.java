@@ -1,42 +1,78 @@
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+package group6.service;
 
-public class CMV10Test {
+import group6.model.Parameters;
+import group6.model.Point;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class LIC10Test {
     @Test
-    public void cmv10Test1() {
-        int NUMPOINTS = 8;
-        double[] X = {0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0};
-        double[] Y = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0};
-        double AREA1 = 1.99;
-        int E_PTS = 2;
-        int F_PTS = 3;
+    void cmv10Test1() {
+        LICService licService = new LICService();
+        List<Point> points = Arrays.asList(
+            new Point(0.0, 0.0),
+            new Point(0.0, 0.0),
+            new Point(0.0, 0.0),
+            new Point(2.0, 0.0),
+            new Point(0.0, 0.0),
+            new Point(0.0, 0.0),
+            new Point(0.0, 0.0),
+            new Point(1.0, 2.0)
+        );
+
+        Parameters parameters = new Parameters();
+        parameters.setArea1(1.99);
+        parameters.setEPts(2);
+        parameters.setFPts(3);
         
-        assertTrue(Decide.cmv10(X, Y, NUMPOINTS, E_PTS, F_PTS, AREA1));
+        assertTrue(licService.evaluateLICById(10, points, parameters));
     }
 
     @Test
     public void cmv10Test2() {
-        int NUMPOINTS = 10;
-        double[] X = {675.299, 649.155, 787.103, 30.356, 518.131, 306.236, 466.805, 643.529, 356.091, 853.476};
-        double[] Y = {675.601, 239.692, 803.359, 787.700, 790.492, 597.113, 263.745, 422.578, 609.727, 655.832};
-        double AREA1 = 0.0;
-        int E_PTS = 5;
-        int F_PTS = 3;
+        LICService licService = new LICService();
+        List<Point> points = Arrays.asList(
+            new Point(675.299, 675.299),
+            new Point(649.155, 649.155),
+            new Point(787.103, 787.103),
+            new Point(30.356, 30.356),
+            new Point(518.131, 518.131),
+            new Point(306.236, 306.236),
+            new Point(466.805, 466.805),
+            new Point(643.529, 643.529),
+            new Point(356.091, 356.091),
+            new Point(853.476, 853.476)
+        );
+
+        Parameters parameters = new Parameters();
+        parameters.setArea1(0.0);
+        parameters.setEPts(5);
+        parameters.setFPts(3);
         
-        assertFalse(Decide.cmv10(X, Y, NUMPOINTS, E_PTS, F_PTS, AREA1));
+        assertFalse(licService.evaluateLICById(10, points, parameters));
     }
     
     @Test
     public void cmv10Test3() {
-        int NUMPOINTS = 5;
-        double[] X = {0.0, 1.0, 2.0, 3.0, 4.0};
-        double[] Y = {4.0, 3.0, 2.0, 1.0, 0.0};
-        int A_PTS = 0;
-        int B_PTS = 1;
-        double AREA1 = 0.0;
+        LICService licService = new LICService();
+        List<Point> points = Arrays.asList(
+            new Point(0.0, 0.0),
+            new Point(1.0, 1.0),
+            new Point(2.0, 2.0),
+            new Point(3.0, 3.0),
+            new Point(4.0, 4.0)
+        );
 
-        assertFalse(Decide.cmv10(X, Y, NUMPOINTS, A_PTS, B_PTS, AREA1));
-        assertFalse(Decide.cmv10(X, Y, NUMPOINTS, B_PTS, A_PTS, AREA1));        
+        Parameters parameters = new Parameters();
+        parameters.setArea1(0.0);
+        parameters.setEPts(0);
+        parameters.setFPts(1);
+
+        assertFalse(licService.evaluateLICById(10, points, parameters));
     }
 }
