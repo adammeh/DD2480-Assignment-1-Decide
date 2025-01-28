@@ -23,10 +23,10 @@ public class LIC {
 
     // todo: Methods for other LICs (LIC1 to LIC14)...
 
-    public boolean CMV5(double[] X){
+    public boolean evaluateLIC5(List<Point> points, Parameters parameters){
 
-        for(int i=0; i<X.length-1;i++){
-            if(X[i+1]-X[i]<0){
+        for(int i=0; i<points.size()-1;i++){
+            if(points.get(i+1).getX()-points.get(i).getX()<0){
                 return true;
             }           
         }

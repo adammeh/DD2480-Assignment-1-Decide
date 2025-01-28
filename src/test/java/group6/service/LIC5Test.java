@@ -1,35 +1,45 @@
-import org.junit.Test;
-import org.junit.Before;
-import static org.junit.Assert.*;
+package group6.service;
 
-import java.beans.Transient;
+import group6.model.Parameters;
+import group6.model.Point;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LIC5Test {
-    //Arrange
-    private Decide decide;
-
-    @Before
-    public void setUp(){
-        decide= new Decide();
-    }
 
     @Test
     public void CMV5True(){
         //Act 
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+                new Point(0, 0),
+                new Point(4, 0),
+                new Point(2, 0)
+        );
+        
         double[] X= {0,4,2}; 
         //Assert
-        assertTrue(decide.CMV5(X));
+        assertTrue(licService.evaluateLICById(5, points, parameters));
     }
 
     @Test 
     public void CMV5False(){
-         //Act 
-         double[] X= {-2,4,5}; 
+        //Act 
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+                new Point(-2, 0),
+                new Point(4, 0),
+                new Point(5, 0)
+        );
 
-         //Assert
-         assertFalse(decide.CMV5(X));
+        //Assert
+        assertFalse(licService.evaluateLICById(5, points, parameters));
     }
 }
