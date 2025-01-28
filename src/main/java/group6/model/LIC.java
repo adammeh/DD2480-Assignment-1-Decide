@@ -1,31 +1,12 @@
 package group6.model;
 import java.util.List;
 import java.util.function.Predicate;
+import group6.util.MathUtil;
 
 /**
  * Implements logic for all Launch Interceptor Conditions (LICs).
  */
 public class LIC {
-    static double triangleArea(double x0, double y0, double x1, double y1, double x2, double y2) {
-        return 0.5 * Math.abs(x0 * (y1 - y2) + x1 * (y2 - y0) + x2 * (y0 - y1));
-    }
-    
-    static boolean existsTriangleWithCondition(List<Point> points, int gap1, int gap2, Predicate<Double> condition) {
-        for ( int i = 0; i + 1 + gap1 + 1 + gap2 < points.size(); ++i ) {
-            double a = triangleArea(
-                points.get(i).getX(),
-                points.get(i).getY(),
-                points.get(i + 1 + gap1).getX(),
-                points.get(i + 1 + gap1).getY(),
-                points.get(i + 1 + gap1 + 1 + gap2).getX(),
-                points.get(i + 1 + gap1 + 1 + gap2).getY()
-            );
-            if ( condition.test(a)) {
-                return true;
-            }
-        }
-        return false;
-    }
     /**
      * todo: Evaluates LIC0: Checks if any two points are farther apart than LENGTH1.
      *
@@ -63,7 +44,7 @@ public class LIC {
             return false;
         }
         Predicate<Double> condition = a -> (a > AREA1);
-        return existsTriangleWithCondition(points, 0, 0, condition);
+        return MathUtil.existsTriangleWithCondition(points, 0, 0, condition);
     }
     
     public boolean evaluateLIC10(List<Point> points, Parameters parameters) {
@@ -76,7 +57,7 @@ public class LIC {
             return false;
         }
         Predicate<Double> condition = a -> (a > AREA1);
-        return existsTriangleWithCondition(points, E_PTS, F_PTS, condition);
+        return MathUtil.existsTriangleWithCondition(points, E_PTS, F_PTS, condition);
     }
     
     public boolean evaluateLIC14(List<Point> points, Parameters parameters) {
@@ -92,7 +73,7 @@ public class LIC {
         Predicate<Double> condition1 = a -> (a > AREA1);
         Predicate<Double> condition2 = a -> (a < AREA2);
         
-        return existsTriangleWithCondition(points, E_PTS, F_PTS, condition1) && existsTriangleWithCondition(points, E_PTS, F_PTS, condition2);
+        return MathUtil.existsTriangleWithCondition(points, E_PTS, F_PTS, condition1) && MathUtil.existsTriangleWithCondition(points, E_PTS, F_PTS, condition2);
     }
 
     public boolean evaluateLIC12(List<Point> points, Parameters parameters) {
