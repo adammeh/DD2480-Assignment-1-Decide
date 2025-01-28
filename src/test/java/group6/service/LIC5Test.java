@@ -7,7 +7,7 @@ import java.beans.Transient;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
-public class CMV_5Test {
+public class LIC5Test {
     //Arrange
     private Decide decide;
 

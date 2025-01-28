@@ -1,4 +1,4 @@
-class Decide{
+class LIC{
 
     public boolean CMV5(double[] X){
 
