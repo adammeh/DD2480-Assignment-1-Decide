@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LIC5Test {
 
-
     /**
      * Test case checking wether evaluateLIC5 evalutes to true
      * @Test: Verfies that function returns true, since X[2]<X[0] 
@@ -29,6 +28,7 @@ public class LIC5Test {
         );
         
         //Assert
+        assertTrue(licService.evaluateLICById(5, points, parameters));
         assertTrue(licService.evaluateLICById(5, points, parameters));
     }
 
