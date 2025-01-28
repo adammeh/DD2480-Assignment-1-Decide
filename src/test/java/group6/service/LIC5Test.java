@@ -28,10 +28,10 @@ public class LIC5Test {
                 new Point(2, 0)
         );
         
-        double[] X= {0,4,2}; 
         //Assert
         assertTrue(licService.evaluateLICById(5, points, parameters));
     }
+
 
     /**
      * Test case checking wether evaluateLIC5 evalutes to false

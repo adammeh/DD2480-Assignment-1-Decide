@@ -29,7 +29,6 @@ public class LIC {
      * @param points the list of points
      * @param parameters the configuration parameters
      * @return true if requirement LIC 5 is satisfied
-     * 
      */
     public boolean evaluateLIC5(List<Point> points, Parameters parameters){
 
