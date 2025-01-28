@@ -1,4 +1,6 @@
-class Decide{
+package main.java.group6.model;
+
+class LIC{
     static boolean CMV_2(double[] x_coordinates, double[] y_coordinates, int NUMPOINTS, double EPSILON){
         int index = 0;
         while (index+2 < NUMPOINTS){

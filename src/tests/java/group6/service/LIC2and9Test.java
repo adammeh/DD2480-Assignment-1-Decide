@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import main.java.group6.model.*;
 
-public class CMV_2AND9Test {
+public class LIC2and9Test {
 
     @Test
     public void computeAngleOverlappingPointsTest() {

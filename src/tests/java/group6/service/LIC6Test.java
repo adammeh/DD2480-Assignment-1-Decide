@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CMV_6Test {
+public class LIC6Test {
 
     @Test
     public void CMV_6TestNotEnoughPoints() {
