@@ -29,7 +29,6 @@ public class LIC5Test {
         
         //Assert
         assertTrue(licService.evaluateLICById(5, points, parameters));
-        assertTrue(licService.evaluateLICById(5, points, parameters));
     }
 
 
