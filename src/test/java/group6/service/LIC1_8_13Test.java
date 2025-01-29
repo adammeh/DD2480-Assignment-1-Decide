@@ -215,8 +215,36 @@ public class LIC1_8_13Test{
     }
 
      /**
+     * Test case checking wether evaluateLIC13 returns true
+     * and there exist set of three consequtive points intervened by A_PTS and B_PTS that dont fit radius 1 and fit radius 2
+     * @Test: Verfies that the function returns true
+     */
+    @Test
+    public void testLIC13TrueOneRadius(){
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(2, 2),
+            new Point(Double.NaN, Double.NaN),
+            new Point(3, 0),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-2, -1)
+
+        );
+        parameters.setRadius1(1);
+        parameters.setRadius2(3);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
+        //Assert
+        assertTrue(licService.evaluateLICById(13, points, parameters));
+
+    }
+
+     /**
      * Test case checking wether evaluateLIC13 returns false
-     * and there exist set of three consequtive points intervened by A_PTS and B_PTS that fit in only one circle 
+     * and there exist set of three consequtive points intervened by A_PTS and B_PTS that fit radius 1 and not radius 2
      * @Test: Verfies that the function returns false
      */
     @Test
@@ -243,13 +271,12 @@ public class LIC1_8_13Test{
     }
 
      /**
-     * Test case checking wether evaluateLIC13 returns false
+     * Test case checking wether evaluateLIC13 returns true
      * and there exist at least a set of three consequtive points intervened by A_PTS and B_PTS that don't fit in the two circles 
-     * test: {}->false
-     * @Test: Verfies that the function returns false
+     * @Test: Verfies that the function returns true
      */
     @Test
-    public void testLIC13TrueNoRadius(){
+    public void testLIC13FalseNoRadius(){
 
         //Act
         LICService licService = new LICService();
@@ -275,7 +302,7 @@ public class LIC1_8_13Test{
         parameters.setBPts(2);
 
         //Assert
-        assertTrue(licService.evaluateLICById(13, points, parameters));
+        assertFalse(licService.evaluateLICById(13, points, parameters));
 
 
     }
