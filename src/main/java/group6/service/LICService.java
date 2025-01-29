@@ -33,6 +33,12 @@ public class LICService {
         switch (licId) {
             case 0:
                 return lic.evaluateLIC0(points, parameters);
+            case 3:
+                return lic.evaluateLIC3(points, parameters);
+            case 10:
+                return lic.evaluateLIC10(points, parameters);
+            case 14:
+                return lic.evaluateLIC14(points, parameters);
             case 4:
                 return lic.evaluateLIC4(points, parameters);
             case 7:

@@ -11,7 +11,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LIC0Test {
-
     @Test
     void testLIC0ValidInput() {
         LICService licService = new LICService();
@@ -21,7 +20,6 @@ public class LIC0Test {
         );
         Parameters parameters = new Parameters();
         parameters.setLength1(10);
-
         assertTrue(licService.evaluateLICById(0, points, parameters), "cmv0 should return true when two consecutive points have a distance greater than LENGTH1");
     }
 
@@ -37,5 +35,4 @@ public class LIC0Test {
 
         assertFalse(licService.evaluateLICById(0, points, parameters), "cmv0 should return false when no two consecutive points have a distance greater than LENGTH1");
     }
-
 }
