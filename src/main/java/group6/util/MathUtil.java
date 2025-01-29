@@ -61,4 +61,44 @@ public class MathUtil {
         }
         return false;
     }
+
+    /**
+     * Computes distance between two points; (x1,y1) and (x2,y2)
+     * 
+     * @param x1 first x coordinate
+     * @param y1 first y coordinate 
+     * @param x2 second x coordinate
+     * @param y2 second y coordinate
+     * @return distance 
+     */
+    public static double distance(double x1, double y1, double x2, double y2){
+        
+        double xdiff=Math.abs(x1-x2); 
+        double ydiff=Math.abs(y1-y2);
+        return Math.sqrt(Math.pow(xdiff,2)+Math.pow(ydiff,2));
+    }
+
+    /**
+     * Computes whether three points fit into a circle of a certain radius
+     * 
+     * @param Xpoints list of x coordinates
+     * @param Ypoints list of y coordinates
+     * @param radius the radius of the circle
+     * @return true if points fit in the circle
+     */
+    public static boolean pointsFitInCircle(double[] Xpoints, double[] Ypoints, double radius ){
+        double a=distance(Xpoints[0],Ypoints[0],Xpoints[1],Ypoints[1]);
+        double b=distance(Xpoints[0],Ypoints[0],Xpoints[2],Ypoints[2]);
+        double c=distance(Xpoints[1],Ypoints[1],Xpoints[2],Ypoints[2]);
+
+        //Uses the law of cosine to compute angle
+        double angleA=Math.acos((Math.pow(b,2)+Math.pow(c,2)-Math.pow(a, 2))/(2*b*c)); 
+
+        //Uses theorem from the law of Sines
+        if (a/Math.sin(angleA)<2*radius){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
