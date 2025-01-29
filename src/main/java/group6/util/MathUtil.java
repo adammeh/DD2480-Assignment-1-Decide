@@ -28,17 +28,18 @@ public class MathUtil {
         }
     }
 
-    public static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y){
+    public static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y) {
         double BAx = p0_x - p1_x;
         double BAy = p0_y - p1_y;
         double BCx = p2_x - p1_x;
         double BCy = p2_y - p1_y;
 
         double dotProduct = BAx * BCx + BAy * BCy;
-        double magnitudeBA = Math.sqrt(BAx*BAx + BAy*BAy);
-        double magnitudeBC = Math.sqrt(BCx*BCx + BCy*BCy);
+        double magnitudeBA = Math.sqrt(BAx * BAx + BAy * BAy);
+        double magnitudeBC = Math.sqrt(BCx * BCx + BCy * BCy);
 
         return Math.acos(dotProduct / (magnitudeBA * magnitudeBC));
+    }
 
     static double triangleArea(double x0, double y0, double x1, double y1, double x2, double y2) {
         return 0.5 * Math.abs(x0 * (y1 - y2) + x1 * (y2 - y0) + x2 * (y0 - y1));

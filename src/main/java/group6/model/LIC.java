@@ -217,8 +217,6 @@ public class LIC {
     }
 
 
-}
-
     // todo: Methods for other LICs (LIC1 to LIC14)...
 }
 
