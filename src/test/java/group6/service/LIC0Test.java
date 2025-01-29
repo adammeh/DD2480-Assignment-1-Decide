@@ -20,6 +20,7 @@ public class LIC0Test {
         );
         Parameters parameters = new Parameters();
         parameters.setLength1(10);
+
         assertTrue(licService.evaluateLICById(0, points, parameters), "cmv0 should return true when two consecutive points have a distance greater than LENGTH1");
     }
 
