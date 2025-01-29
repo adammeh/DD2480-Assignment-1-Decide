@@ -44,7 +44,7 @@ public class LIC {
             double[] Xpoints ={points.get(i).getX(), points.get(i+1).getX(), points.get(i+2).getX()};
             double[] Ypoints ={points.get(i).getY(), points.get(i+1).getY(), points.get(i+2).getY()};
 
-            if (MathUtil.pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
+            if (MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 return true;
             }
         }
@@ -249,7 +249,7 @@ public class LIC {
             double[] Xpoints ={points.get(i).getX(), points.get(i+A_PTS+1).getX(), points.get(i+A_PTS+B_PTS+2).getX()};
             double[] Ypoints ={points.get(i).getY(), points.get(i+A_PTS+1).getY(), points.get(i+A_PTS+B_PTS+2).getY()};
 
-            if (MathUtil.pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
+            if (MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 return true;
             }
 
@@ -323,10 +323,10 @@ public class LIC {
             double[] Xpoints ={points.get(i).getX(), points.get(i+A_PTS+1).getX(), points.get(i+A_PTS+B_PTS+2).getX()};
             double[] Ypoints ={points.get(i).getY(), points.get(i+A_PTS+1).getY(), points.get(i+A_PTS+B_PTS+2).getY()};
 
-            if (MathUtil.pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
+            if (MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 circle1=true;
             }
-            if (MathUtil.pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius2())){
+            if (MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius2())){
                 circle2=true;
             }
             if (circle1 && circle2){

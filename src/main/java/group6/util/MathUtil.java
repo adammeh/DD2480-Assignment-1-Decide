@@ -86,7 +86,7 @@ public class MathUtil {
      * @param radius the radius of the circle
      * @return true if points fit in the circle
      */
-    public static boolean pointsFitInCircle(double[] Xpoints, double[] Ypoints, double radius ){
+    public static boolean pointsDontFitInCircle(double[] Xpoints, double[] Ypoints, double radius ){
         double a=distance(Xpoints[0],Ypoints[0],Xpoints[1],Ypoints[1]);
         double b=distance(Xpoints[0],Ypoints[0],Xpoints[2],Ypoints[2]);
         double c=distance(Xpoints[1],Ypoints[1],Xpoints[2],Ypoints[2]);
@@ -96,9 +96,9 @@ public class MathUtil {
 
         //Uses theorem from the law of Sines
         if (a/Math.sin(angleA)<2*radius){
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
     }
 }
