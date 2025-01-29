@@ -21,6 +21,19 @@ public class LIC0Test {
         Parameters parameters = new Parameters();
         parameters.setLength1(10);
 
-//        assertTrue(licService.evaluateLICById(0, points, parameters), "cmv0 should return true when two consecutive points have a distance greater than LENGTH1");
+        assertTrue(licService.evaluateLICById(0, points, parameters), "cmv0 should return true when two consecutive points have a distance greater than LENGTH1");
+    }
+
+    @Test
+    void testCmv0_False() {
+        LICService licService = new LICService();
+        List<Point> points = Arrays.asList(
+                new Point(0, 0),
+                new Point(5, 5)
+        );
+        Parameters parameters = new Parameters();
+        parameters.setLength1(10);
+
+        assertFalse(licService.evaluateLICById(0, points, parameters), "cmv0 should return false when no two consecutive points have a distance greater than LENGTH1");
     }
 }

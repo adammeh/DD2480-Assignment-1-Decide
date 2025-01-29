@@ -1,6 +1,8 @@
 package group6.util;
-
+import java.util.function.Predicate;
 import group6.common.Constants.ComparisonType;
+import java.util.List;
+import group6.model.Point;
 
 /**
  * Utility class for mathematical operations(e.g. calculate distance/angle/area, etc.).
@@ -26,7 +28,6 @@ public class MathUtil {
         }
     }
 
-
     public static double computeAngle(double p0_x, double p0_y, double p1_x, double p1_y, double p2_x, double p2_y){
         double BAx = p0_x - p1_x;
         double BAy = p0_y - p1_y;
@@ -39,5 +40,24 @@ public class MathUtil {
 
         return Math.acos(dotProduct / (magnitudeBA * magnitudeBC));
 
+    static double triangleArea(double x0, double y0, double x1, double y1, double x2, double y2) {
+        return 0.5 * Math.abs(x0 * (y1 - y2) + x1 * (y2 - y0) + x2 * (y0 - y1));
+    }
+    
+    public static boolean existsTriangleWithCondition(List<Point> points, int gap1, int gap2, Predicate<Double> condition) {
+        for ( int i = 0; i + 1 + gap1 + 1 + gap2 < points.size(); ++i ) {
+            double a = triangleArea(
+                points.get(i).getX(),
+                points.get(i).getY(),
+                points.get(i + 1 + gap1).getX(),
+                points.get(i + 1 + gap1).getY(),
+                points.get(i + 1 + gap1 + 1 + gap2).getX(),
+                points.get(i + 1 + gap1 + 1 + gap2).getY()
+            );
+            if ( condition.test(a)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
