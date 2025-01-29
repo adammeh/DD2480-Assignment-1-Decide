@@ -32,7 +32,7 @@
         "F_PTS": 1,
         "G_PTS": 1,
         "LENGTH2": 100.0,
-        "RADIUS2": 0.1,
+        "RADIUS2": 100.0,
         "AREA2": 100.0
     },
     "LCM": [
