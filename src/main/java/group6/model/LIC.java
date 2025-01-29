@@ -326,7 +326,7 @@ public class LIC {
             if (MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 circle1=true;
             }
-            if (MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius2())){
+            if (!MathUtil.pointsDontFitInCircle(Xpoints, Ypoints, parameters.getRadius2())){
                 circle2=true;
             }
             if (circle1 && circle2){
