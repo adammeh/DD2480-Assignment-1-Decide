@@ -23,6 +23,14 @@ public class LIC {
 
     // todo: Methods for other LICs (LIC1 to LIC14)...
 
+    /**
+     * There exists at least one set of three consecutive data points that cannot all be contained
+     * within or on a circle of radius RADIUS1
+     * 
+     * @param points the list of points
+     * @param parameters the configuration parameters
+     * @return true if requirement LIC 1 is satisfied
+     */
     public static boolean evaluateLIC1(List<Point> points, Parameters parameters){
         
 
@@ -40,7 +48,15 @@ public class LIC {
 
     }
 
-
+    /**
+     * Computes distance between two points; (x1,y1) and (x2,y2)
+     * 
+     * @param x1 first x coordinate
+     * @param y1 first y coordinate 
+     * @param x2 second x coordinate
+     * @param y2 second y coordinate
+     * @return distance 
+     */
     public static double distance(double x1, double y1, double x2, double y2){
         
         double xdiff=Math.abs(x1-x2); 
@@ -48,7 +64,14 @@ public class LIC {
         return Math.sqrt(Math.pow(xdiff,2)+Math.pow(ydiff,2));
     }
 
-
+   /**
+     * Computes whether three points fit into a circle of a certain radius
+     * 
+     * @param Xpoints list of x coordinates
+     * @param Ypoints list of y coordinates
+     * @param radius the radius of the circle
+     * @return true if points fit in the circle
+     */
     public static boolean pointsFitInCircle(double[] Xpoints, double[] Ypoints, double radius ){
         double a=distance(Xpoints[0],Ypoints[0],Xpoints[1],Ypoints[1]);
         double b=distance(Xpoints[0],Ypoints[0],Xpoints[2],Ypoints[2]);
@@ -65,7 +88,15 @@ public class LIC {
         }
 
     }
-
+   /**
+     * There exists at least one set of three data points separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. The condition is not met when NUMPOINTS < 5
+     * 
+     * @param points the list of points
+     * @param parameters the configuration parameters
+     * @return true if requirement LIC 8 is satisfied
+     */
     public static boolean evaluateLIC8(List<Point> points, Parameters parameters){
         int A_PTS=parameters.getAPts();
         int B_PTS=parameters.getBPts();
@@ -88,6 +119,18 @@ public class LIC {
 
     }
 
+    /**
+     * There exists at least one set of three data points, separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1. In addition, there exists at least one set of three data points (which can be
+     * the same or different from the three data points just mentioned) separated by exactly A PTS
+     * and B PTS consecutive intervening points, respectively, that can be contained in or on a
+     * circle of radius RADIUS2. Both parts must be true for the LIC to be true. The condition is not met when NUMPOINTS < 5.
+     * 
+     * @param points the list of points
+     * @param parameters the configuration parameters
+     * @return true if requirement LIC 13 is satisfied
+     */
     public static boolean evaluateLIC13(List<Point> points, Parameters parameters){
         int A_PTS=parameters.getAPts();
         int B_PTS=parameters.getBPts();

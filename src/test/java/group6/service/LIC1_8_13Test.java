@@ -13,6 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LIC1_8_13Test{
 
+
+    /**
+     * Test case checking whether distance() returns correct computed answers 
+     * test1: p1=(0,0), p2=(0,0)-> 0
+     * test2: p1=(3,4), p2=(0,0)-> 5
+     * test3: p1=(-3,-4), p2=(0,0)-> 5
+     * @Test: Verfies that the function returns expected distanced for points  
+     */
     @Test
     public void testCorrectDistance(){
         LIC lic = new LIC(); 
@@ -23,6 +31,12 @@ public class LIC1_8_13Test{
   
     }  
 
+    /**
+     * Test case checking wether evaluateLIC1 returns true respective points fit in respective circle
+     * test1: p1=(0,0), p2=(1,0), p3=(0,1), r=1 -> true
+     * test2: p1=(0,0), p2=(1,0), p3=(0,1), r=1 -> true
+     * @Test: Verfies that the function returns true
+     */
     @Test
     public void testLIC1True(){
         //Act
@@ -53,7 +67,12 @@ public class LIC1_8_13Test{
 
     }
 
-
+    /**
+     * Test case checking wether evaluateLIC1 returns false and respective points don't fit in respective circle
+     * test1: p1=(0,0), p2=(1,0), p3=(0,1), r=0.5 -> false
+     * test2: p1=(0,0), p2=(1,0), p3=(0,1), r=0.5 -> false
+     * @Test: Verfies that the function returns  false
+     */
     @Test
     public void testLIC1False(){
         //Act
@@ -81,7 +100,12 @@ public class LIC1_8_13Test{
 
     }
 
-
+    /**
+     * Test case checking wether evaluateLIC8 returns true
+     * and there exist at least a set of three consequtive points intervened by A_PTS and B_PTS that fit in a circle
+     * test: p1=(0,2), p2=(3,0), p3=(-2,-1), r=3 -> true
+     * @Test: Verfies that the function returns true
+     */
     @Test
     public void testLIC8True(){
         //Act
@@ -106,7 +130,12 @@ public class LIC1_8_13Test{
 
     }
 
-
+    /**
+     * Test case checking wether evaluateLIC8 returns false
+     * and there exist no set of three consequtive points intervened by A_PTS and B_PTS that fit in a circle
+     * test: p1=(0,4), p2=(-5,0), p3=(3,3), r=3 -> false
+     * @Test: Verfies that the function returns false
+     */
     @Test
     public void testLIC8False(){
         //Act
@@ -129,7 +158,11 @@ public class LIC1_8_13Test{
         assertFalse(licService.evaluateLICById(8, points, parameters));
     }
 
-
+     /**
+     * Test case checking wether evaluateLIC8 returns false
+     * since number of points is < 5
+     * @Test: Verfies that the function returns false
+     */
     @Test
     public void notEnoughPointsLIC8(){
         //Act
@@ -150,6 +183,13 @@ public class LIC1_8_13Test{
 
     }
 
+
+    /**
+     * Test case checking wether evaluateLIC13 returns true
+     * and there exist two sets of three consequtive points intervened by A_PTS and B_PTS that fit in a two circles respectivley
+     * test: {p1=(2,2), p2=(3,0), p3=(-2,-1), r=3} , {p1=(0.5,0.5), p2=(0.2,-1), p3=(-1,0), r=1}->true
+     * @Test: Verfies that the function returns true
+     */
     @Test
     public void testLIC13True(){
         //Act
@@ -180,7 +220,12 @@ public class LIC1_8_13Test{
 
     }
 
-
+     /**
+     * Test case checking wether evaluateLIC13 returns false
+     * and there exist one set of three consequtive points intervened by A_PTS and B_PTS that fit in a two circles 
+     * test: {p1=(0.5,0.5), p2=(0.2,-1), p3=(-1,0), r=1}->false
+     * @Test: Verfies that the function returns false
+     */
     @Test
     public void testLIC13FalseOneRadius(){
         //Act
@@ -210,6 +255,12 @@ public class LIC1_8_13Test{
 
     }
 
+     /**
+     * Test case checking wether evaluateLIC13 returns false
+     * and there exist no set of three consequtive points intervened by A_PTS and B_PTS that fit in a two circles 
+     * test: {}->false
+     * @Test: Verfies that the function returns false
+     */
     @Test
     public void testLIC13FalseNoRadius(){
 
