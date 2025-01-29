@@ -1,6 +1,6 @@
 package group6.service;
 
-import group6.model.LIC;
+import group6.util.MathUtil;
 import group6.model.Parameters;
 import group6.model.Point;
 
@@ -23,11 +23,10 @@ public class LIC1_8_13Test{
      */
     @Test
     public void testCorrectDistance(){
-        LIC lic = new LIC(); 
         
-        assertEquals(0.0, lic.distance(0.0, 0.0, 0.0, 0.0));
-        assertEquals(5.0, lic.distance(3.0, 4.0, 0.0, 0.0));
-        assertEquals(5.0, lic.distance(-3.0, -4.0, 0.0, 0.0));
+        assertEquals(0.0, MathUtil.distance(0.0, 0.0, 0.0, 0.0));
+        assertEquals(5.0, MathUtil.distance(3.0, 4.0, 0.0, 0.0));
+        assertEquals(5.0, MathUtil.distance(-3.0, -4.0, 0.0, 0.0));
   
     }  
 
