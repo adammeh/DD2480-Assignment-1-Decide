@@ -68,7 +68,7 @@ public class LIC {
         return Math.sqrt(Math.pow(xdiff,2)+Math.pow(ydiff,2));
     }
 
-   /**
+    /**
      * Computes whether three points fit into a circle of a certain radius
      * 
      * @param Xpoints list of x coordinates
@@ -90,7 +90,27 @@ public class LIC {
         }else{
             return false;
         }
+    }
 
+    /**
+     * There exists at least one set of two consecutive data points
+     * (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1) 
+     * 
+     * @param points the list of points
+     * @param parameters the configuration parameters
+     * @return true if requirement LIC 5 is satisfied
+     */
+    public boolean evaluateLIC5(List<Point> points, Parameters parameters){
+
+        //checks for two consecutive datapoints
+        for(int i=0; i<points.size()-1;i++){
+
+            // checks X[i+1] - X[i] < 0
+            if(points.get(i+1).getX()-points.get(i).getX()<0){
+                return true;
+            }           
+        }
+        return false;
     }
 
     public boolean evaluateLIC7(List<Point> points, Parameters parameters) {

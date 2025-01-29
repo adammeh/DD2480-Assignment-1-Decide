@@ -47,6 +47,8 @@ public class LICService {
                 return lic.evaluateLIC14(points, parameters);
             case 4:
                 return lic.evaluateLIC4(points, parameters);
+            case 5: 
+                return lic.evaluateLIC5(points, parameters);
             case 7:
                 return lic.evaluateLIC7(points, parameters);
             case 12:
