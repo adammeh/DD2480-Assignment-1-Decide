@@ -1,7 +1,8 @@
-import java.lang.Math;
+
 package group6.model;
 
 import java.util.List;
+import java.lang.Math;
 
 /**
  * Implements logic for all Launch Interceptor Conditions (LICs).
@@ -22,16 +23,16 @@ public class LIC {
 
     // todo: Methods for other LICs (LIC1 to LIC14)...
 
-    public static boolean CMV1(double[] X, double[] Y, double RADIUS1){
+    public static boolean evaluateLIC1(List<Point> points, Parameters parameters){
         
 
         //Checks for every set of three consequtive datapoints
-        for(int i=0; i<X.length-2;i++){
+        for(int i=0; i<points.size()-2;i++){
 
-            double[] Xpoints ={X[i], X[i+1], X[i+2]};
-            double[] Ypoints ={Y[i], Y[i+1], Y[i+2]};
+            double[] Xpoints ={points.get(i).getX(), points.get(i+1).getX(), points.get(i+2).getX()};
+            double[] Ypoints ={points.get(i).getY(), points.get(i+1).getY(), points.get(i+2).getY()};
 
-            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS1)){
+            if (pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 return true;
             }
         }
@@ -65,17 +66,20 @@ public class LIC {
 
     }
 
-    public static boolean CMV8(double[] X, double[] Y, int A_PTS, int B_PTS, double RADIUS1, int NUMPOINTS){
+    public static boolean evaluateLIC8(List<Point> points, Parameters parameters){
+        int A_PTS=parameters.getAPts();
+        int B_PTS=parameters.getBPts();
 
-        if (!(1<=A_PTS && 1<=B_PTS && A_PTS+B_PTS<=(NUMPOINTS-3))){
+
+        if (!(1<=A_PTS && 1<=B_PTS && A_PTS+B_PTS<=(points.size()-3))){
             return false;
         }
 
-        for(int i=0; i<NUMPOINTS-(A_PTS+B_PTS+2);i++){
-            double[] Xpoints ={X[i], X[i+A_PTS+1], X[i+A_PTS+B_PTS+2]};
-            double[] Ypoints ={Y[i], Y[i+A_PTS+1], Y[i+A_PTS+B_PTS+2]};
+        for(int i=0; i<points.size()-(A_PTS+B_PTS+2);i++){
+            double[] Xpoints ={points.get(i).getX(), points.get(i+A_PTS+1).getX(), points.get(i+A_PTS+B_PTS+2).getX()};
+            double[] Ypoints ={points.get(i).getY(), points.get(i+A_PTS+1).getY(), points.get(i+A_PTS+B_PTS+2).getY()};
 
-            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS1)){
+            if (pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 return true;
             }
 
@@ -84,23 +88,25 @@ public class LIC {
 
     }
 
-    public static boolean CMV13(double[] X, double[] Y, int A_PTS, int B_PTS, double RADIUS1, double RADIUS2, int NUMPOINTS){
+    public static boolean evaluateLIC13(List<Point> points, Parameters parameters){
+        int A_PTS=parameters.getAPts();
+        int B_PTS=parameters.getBPts();
 
-        if (!(1<=A_PTS && 1<=B_PTS && A_PTS+B_PTS<=(NUMPOINTS-3))){
+        if (!(1<=A_PTS && 1<=B_PTS && A_PTS+B_PTS<=(points.size()-3))){
             return false;
         }
         
         boolean circle1=false;
         boolean circle2=false;
 
-        for(int i=0; i<NUMPOINTS-(A_PTS+B_PTS+2);i++){
-            double[] Xpoints ={X[i], X[i+A_PTS+1], X[i+A_PTS+B_PTS+2]};
-            double[] Ypoints ={Y[i], Y[i+A_PTS+1], Y[i+A_PTS+B_PTS+2]};
+        for(int i=0; i<points.size()-(A_PTS+B_PTS+2);i++){
+            double[] Xpoints ={points.get(i).getX(), points.get(i+A_PTS+1).getX(), points.get(i+A_PTS+B_PTS+2).getX()};
+            double[] Ypoints ={points.get(i).getY(), points.get(i+A_PTS+1).getY(), points.get(i+A_PTS+B_PTS+2).getY()};
 
-            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS1)){
+            if (pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius1())){
                 circle1=true;
             }
-            if (pointsFitInCircle(Xpoints, Ypoints, RADIUS2)){
+            if (pointsFitInCircle(Xpoints, Ypoints, parameters.getRadius2())){
                 circle2=true;
             }
             if (circle1 && circle2){
@@ -110,4 +116,5 @@ public class LIC {
         }
         return false;
 
+}
 }

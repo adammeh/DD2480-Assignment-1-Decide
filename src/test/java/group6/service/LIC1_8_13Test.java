@@ -1,163 +1,243 @@
+package group6.service;
 
-import org.junit.Test;
-import org.junit.Before;
-import static org.junit.Assert.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
+import group6.model.LIC;
+import group6.model.Parameters;
+import group6.model.Point;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LIC1_8_13Test{
-    //Arrange
-    private Decide decide;
-
-    @Before
-    public void setUp(){
-        decide= new Decide();
-    }
 
     @Test
-    public void correctDistance(){
+    public void testCorrectDistance(){
+        LIC lic = new LIC(); 
         
-        //Assert
-        assertThat(0.0, equalTo(decide.distance(0.0, 0.0, 0.0, 0.0)));
-        assertThat(5.0, equalTo(decide.distance(3.0, 4.0, 0.0, 0.0)));
-        assertThat(5.0, equalTo(decide.distance(-3.0, -4.0, 0.0, 0.0)));
+        assertEquals(0.0, lic.distance(0.0, 0.0, 0.0, 0.0));
+        assertEquals(5.0, lic.distance(3.0, 4.0, 0.0, 0.0));
+        assertEquals(5.0, lic.distance(-3.0, -4.0, 0.0, 0.0));
   
-    }   
+    }  
 
     @Test
-    public void pointsInsideCircle(){
-        //Act 
-        double RADIUS1=1; 
-        double[] X1= {0.0,1.0,0.0}; 
-        double[] Y1= {0.0,0.0,1.0}; 
-
-        double RADIUS2=2; 
-        double[] X2= {0.0,3.0,0.0,0.0,1.0,0.0}; 
-        double[] Y2= {0.0,0.0,3.0,0.0,0.0,1.0}; 
-        
-        //Assert
-        assertTrue(decide.CMV1(X1,Y1, RADIUS1));
-        assertTrue(decide.CMV1(X2,Y2, RADIUS2));
-
-
-    }
-
-
-    @Test
-    public void pointsOutsideCircle(){
-        //Act 
-        double RADIUS1=0.5; 
-        double[] X= {0.0,1.0,0.0}; 
-        double[] Y= {0.0,0.0,1.0}; 
-
-        double[] X2= {0.0,3.0,0.0,0.0,1.0,0.0}; 
-        double[] Y2= {0.0,0.0,3.0,0.0,0.0,1.0}; 
-        
-        //Assert
-        assertFalse(decide.CMV1(X,Y, RADIUS1));
-        assertFalse(decide.CMV1(X2,Y2, RADIUS1));
-
-    }
-
-
-    @Test
-    public void pointsInsideCircle_CMV8(){
-        //Act 
-        int A_PTS=1; 
-        int B_PTS=2;
-        int NUMPOINTS=6;
-        
-        double RADIUS1=3; 
-        double[] X= {2, 0,3, 0,0,-2}; 
-        double[] Y= {2,0,0,0,0,-1}; 
-        
-        //Assert
-        assertTrue(decide.CMV8(X,Y,A_PTS, B_PTS, RADIUS1,NUMPOINTS));
-
-    }
-
-
-    @Test
-    public void pointsOutsideCircle_CMV8(){
+    public void testLIC1True(){
         //Act
-        int A_PTS=1; 
-        int B_PTS=2;
-        int NUMPOINTS=6;
-        
-        double RADIUS1=3;
-        double[] X= {0,0,-5,0,0,3}; 
-        double[] Y= {4,0,0,0,0,3}; 
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        Parameters parameters2 = new Parameters();
+        List<Point> points1 = Arrays.asList(
+            new Point(0, 0),
+            new Point(1, 0),
+            new Point(0, 1)
+        ); 
+        List<Point> points2 = Arrays.asList(
+            new Point(0, 0),
+            new Point(3, 0),
+            new Point(0, 3),
+            new Point(0, 0),
+            new Point(1, 0),
+            new Point(0, 1)
 
+        );
+        parameters.setRadius1(1);
+        parameters2.setRadius1(2);
+        
         //Assert
-        assertFalse(decide.CMV8(X,Y,A_PTS, B_PTS, RADIUS1,NUMPOINTS));
+        assertTrue(licService.evaluateLICById(1, points1, parameters));
+        assertTrue(licService.evaluateLICById(1, points2, parameters));
+
+
     }
 
 
     @Test
-    public void notEnoughPoints_CMV8(){
-        //Act 
-        int A_PTS=1; 
-        int B_PTS=1;
-        int NUMPOINTS=3;
-        
-        double RADIUS1=3; 
-        double[] X= {2, 3, -2}; 
-        double[] Y= {2,0,-1}; 
-        
-        //Assert
-        assertFalse(decide.CMV8(X,Y,A_PTS, B_PTS, RADIUS1,NUMPOINTS));
-
-    }
-
-    @Test
-    public void pointsFitTwoRadius_CMV13(){
+    public void testLIC1False(){
         //Act
-        int A_PTS=1; 
-        int B_PTS=2;
-        int NUMPOINTS=12;
-        
-        double RADIUS1=3;
-        double RADIUS2=1;
-        double[] X= {2,Double.NaN,3,Double.NaN,Double.NaN,-2, 0.5,Double.NaN,0.2,Double.NaN,Double.NaN,-1}; 
-        double[] Y= {2,Double.NaN,0,Double.NaN,Double.NaN,-1,0.5,Double.NaN,-1,Double.NaN,Double.NaN,0}; 
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points1 = Arrays.asList(
+            new Point(0, 0),
+            new Point(1, 0),
+            new Point(0, 1)
+        ); 
+        List<Point> points2 = Arrays.asList(
+            new Point(0, 0),
+            new Point(3, 0),
+            new Point(0, 3),
+            new Point(0, 0),
+            new Point(1, 0),
+            new Point(0, 1)
 
+        );
+        parameters.setRadius1(0.5);
+        
         //Assert
-        assertTrue(decide.CMV13(X,Y,A_PTS, B_PTS, RADIUS1,RADIUS2,NUMPOINTS));
+        assertFalse(licService.evaluateLICById(1, points1, parameters));
+        assertFalse(licService.evaluateLICById(1, points2, parameters));
 
     }
 
 
     @Test
-    public void pointsFitOneRadius_CMV13(){
-         //Act
-         int A_PTS=1; 
-         int B_PTS=2;
-         int NUMPOINTS=12;
-         
-         double RADIUS1=0.5;
-         double RADIUS2=1;
-         double[] X= {2,Double.NaN,3,Double.NaN,Double.NaN,-2, 0.5,Double.NaN,0.2,Double.NaN,Double.NaN,-1}; 
-         double[] Y= {2,Double.NaN,0,Double.NaN,Double.NaN,-1,0.5,Double.NaN,-1,Double.NaN,Double.NaN,0}; 
+    public void testLIC8True(){
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(0, 2),
+            new Point(2, 0),
+            new Point(3, 0),
+            new Point(0, 0),
+            new Point(0, 0),
+            new Point(-2, -1)
+
+        );
+        parameters.setRadius1(3);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
  
-         //Assert
-         assertFalse(decide.CMV13(X,Y,A_PTS, B_PTS, RADIUS1,RADIUS2,NUMPOINTS));
- 
+        
+        //Assert
+        assertTrue(licService.evaluateLICById(8, points, parameters));
+
+    }
+
+
+    @Test
+    public void testLIC8False(){
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(0, 4),
+            new Point(0, 0),
+            new Point(-5, 0),
+            new Point(0, 0),
+            new Point(0, 0),
+            new Point(3, 3)
+
+        );
+        parameters.setRadius1(3);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
+
+        //Assert
+        assertFalse(licService.evaluateLICById(8, points, parameters));
+    }
+
+
+    @Test
+    public void notEnoughPointsLIC8(){
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(2, 2),
+            new Point(3, 0),
+            new Point(-2, -1)
+
+        );
+        parameters.setRadius1(3);
+        parameters.setAPts(1);
+        parameters.setBPts(1);
+        
+        //Assert
+        assertFalse(licService.evaluateLICById(8, points, parameters));
+
     }
 
     @Test
-    public void pointsFitNoRadius_CMV13(){
+    public void testLIC13True(){
         //Act
-        int A_PTS=1; 
-        int B_PTS=2;
-        int NUMPOINTS=12;
-        
-        double RADIUS1=0.5;
-        double RADIUS2=1;
-        double[] X= {2,Double.NaN,3,Double.NaN,Double.NaN,-2, 0.5,Double.NaN,0.2,Double.NaN,Double.NaN,-2}; 
-        double[] Y= {2,Double.NaN,0,Double.NaN,Double.NaN,-1,0.5,Double.NaN,-1,Double.NaN,Double.NaN,0}; 
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(2, 2),
+            new Point(Double.NaN, Double.NaN),
+            new Point(3, 0),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-2, -1),
+            new Point(0.5, 0.5),
+            new Point(Double.NaN, Double.NaN),
+            new Point(0.2, -1),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-1, 0)
+
+        );
+        parameters.setRadius1(3);
+        parameters.setRadius2(1);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
 
         //Assert
-        assertFalse(decide.CMV13(X,Y,A_PTS, B_PTS, RADIUS1,RADIUS2,NUMPOINTS));
+        assertTrue(licService.evaluateLICById(13, points, parameters));
+
+    }
+
+
+    @Test
+    public void testLIC13FalseOneRadius(){
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(2, 2),
+            new Point(Double.NaN, Double.NaN),
+            new Point(3, 0),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-2, -1),
+            new Point(0.5, 0.5),
+            new Point(Double.NaN, Double.NaN),
+            new Point(0.2, -1),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-1, 0)
+
+        );
+        parameters.setRadius1(0.5);
+        parameters.setRadius2(1);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
+        //Assert
+        assertFalse(licService.evaluateLICById(13, points, parameters));
+
+    }
+
+    @Test
+    public void testLIC13FalseNoRadius(){
+
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(2, 2),
+            new Point(Double.NaN, Double.NaN),
+            new Point(3, 0),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-2, -1),
+            new Point(0.5, 0.5),
+            new Point(Double.NaN, Double.NaN),
+            new Point(0.2, -1),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-2, 0)
+
+        );
+        parameters.setRadius1(0.5);
+        parameters.setRadius2(1);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
+
+        //Assert
+        assertFalse(licService.evaluateLICById(13, points, parameters));
 
 
     }
