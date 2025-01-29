@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
-public class CMV_1Test{
+public class LIC1_8_13Test{
     //Arrange
     private Decide decide;
 

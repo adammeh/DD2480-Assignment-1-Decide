@@ -1,6 +1,6 @@
 import java.lang.Math;
 
-public class Decide{
+public class LIC{
 
 
     public static boolean CMV1(double[] X, double[] Y, double RADIUS1){
