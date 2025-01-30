@@ -32,7 +32,7 @@ public class LIC1_8_13Test{
 
     /**
      * Test case checking wether evaluateLIC1 returns false since points fit in circle
-     * test1: p1=(0,0), p2=(1,0), p3=(0,1), r=1 -> false
+     * test1: p1=(-1,0), p2=(1,0), p3=(0,1), r=1 -> false
      * test2: p1=(0,0), p2=(1,0), p3=(0,1), r=1 -> false
      * @Test: Verfies that the function returns false
      */
@@ -43,7 +43,7 @@ public class LIC1_8_13Test{
         Parameters parameters = new Parameters();
         Parameters parameters2 = new Parameters();
         List<Point> points1 = Arrays.asList(
-            new Point(0, 0),
+            new Point(-1, 0),
             new Point(1, 0),
             new Point(0, 1)
         ); 
@@ -68,7 +68,7 @@ public class LIC1_8_13Test{
 
     /**
      * Test case checking wether evaluateLIC1 returns true since points don't fit in circle
-     * test1: p1=(0,0), p2=(1,0), p3=(0,1), r=0.5 -> true
+     * test1: p1=(-1,0), p2=(1,0), p3=(0,1), r=0.5 -> true
      * test2: p1=(0,0), p2=(3,0), p3=(0,3), r=1 -> true
      * @Test: Verfies that the function returns  true
      */
@@ -79,7 +79,7 @@ public class LIC1_8_13Test{
         Parameters parameters = new Parameters();
         Parameters parameters2 = new Parameters();
         List<Point> points1 = Arrays.asList(
-            new Point(0, 0),
+            new Point(-1, 0),
             new Point(1, 0),
             new Point(0, 1)
         ); 
