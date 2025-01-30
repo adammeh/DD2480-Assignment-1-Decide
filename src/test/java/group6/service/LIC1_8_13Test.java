@@ -307,5 +307,34 @@ public class LIC1_8_13Test{
 
     }
 
+     /**
+     * Test case checking wether evaluateLIC13 returns false
+     * since number of points is < 5
+     * @Test: Verfies that the function returns false
+     */
+    @Test
+    public void notEnoughPointsLIC13(){
+        //Act
+        LICService licService = new LICService();
+        Parameters parameters = new Parameters();
+        List<Point> points = Arrays.asList(
+            new Point(2, 2),
+            new Point(3, 0),
+            new Point(Double.NaN, Double.NaN),
+            new Point(Double.NaN, Double.NaN),
+            new Point(-2, -1)
+
+        );
+        parameters.setRadius1(1);
+        parameters.setRadius2(3);
+        parameters.setAPts(1);
+        parameters.setBPts(2);
+        //Assert
+        assertFalse(licService.evaluateLICById(13, points, parameters));
+
+    }
+
+    
+
 
 }
