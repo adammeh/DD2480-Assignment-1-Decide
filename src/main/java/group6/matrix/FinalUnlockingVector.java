@@ -60,4 +60,14 @@ public class FinalUnlockingVector {
         }
         return true;
     }
+
+    /**
+     * Retrieves the value of a specific condition in the FUV.
+     *
+     * @param index the condition index
+     * @return the value of the condition
+     */
+    public boolean getCondition(int index) {
+        return fuv[index];
+    }
 }

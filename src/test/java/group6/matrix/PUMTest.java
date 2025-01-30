@@ -8,7 +8,7 @@ public class PUMTest {
 
     @Test
     void testValidPUM() {
-        int size = 5;
+        int size = 15;
         ConditionsMetVector cmv = new ConditionsMetVector(size);
         LogicalConnectorMatrix lcm = new LogicalConnectorMatrix(size);
         PreliminaryUnlockingMatrix pum = new PreliminaryUnlockingMatrix(size);
@@ -40,7 +40,7 @@ public class PUMTest {
 
     @Test
     void testInvalidPUM() {
-        int size = 3;
+        int size = 15;
         ConditionsMetVector cmv = new ConditionsMetVector(size);
         LogicalConnectorMatrix lcm = new LogicalConnectorMatrix(size);
         PreliminaryUnlockingMatrix pum = new PreliminaryUnlockingMatrix(size);
@@ -66,7 +66,7 @@ public class PUMTest {
 
     @Test
     void testPUMSymmetry() {
-        int size = 4;
+        int size = 15;
         ConditionsMetVector cmv = new ConditionsMetVector(size);
         LogicalConnectorMatrix lcm = new LogicalConnectorMatrix(size);
         PreliminaryUnlockingMatrix pum = new PreliminaryUnlockingMatrix(size);
