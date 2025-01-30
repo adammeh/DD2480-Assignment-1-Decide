@@ -95,7 +95,7 @@ public class MathUtil {
         double angleA=Math.acos((Math.pow(b,2)+Math.pow(c,2)-Math.pow(a, 2))/(2*b*c)); 
 
         //Uses theorem from the law of Sines
-        if (a/Math.sin(angleA)<2*radius){
+        if (a/Math.sin(angleA)<=2*radius){
             return false;
         }else{
             return true;
