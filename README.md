@@ -26,5 +26,3 @@ Each implementation also involves the task of creating the relevant tests for th
 - Maven project structure
 - LICService implementation (CMV top level implementation)
 - FUV and PUM implementation and calculations
-
-test
